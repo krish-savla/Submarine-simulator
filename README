@@ -1,0 +1,120 @@
+README
+
+Name: Krish Savla
+Eamil: krish.savla@tufts.edu
+
+Homework 2/3/4/5/6/7
+
+compilation: javac Main.java
+run: java Main
+
+
+Description:
+
+This is a submarine simulator, where there is a submarine that 
+does multiple activities. Every time an obstacle collides with the sub, 
+the score will update on the top. The speed of the obstacles will also be
+Changeable with a toggle button. The sub color will also be changeable. There is a 
+scrollbar that moves it up and down. There is a button that adds obstacles 
+for the submarine to crash into. Finally, there is a button that changes from night 
+mode to day mode and an exit button. There is also a pause button which freezes
+processes like move and changing sub color, it also freezes obstacles.
+
+Game rules: 
+
+1. The player controls a submarine using a scrollbar.
+2. Move the scrollbar up the make the sub go up and move the
+      Scrollbar down to make the sub go down
+3. The color of the submarine can be changed using the change
+      Color button
+4. There is also a night mode option which will change the 
+      Background of the canvas to black
+5. Random obstacles can be added by clicking the random obstacle
+      Button, which generates random coordinates and adds a random
+      Obstacle there.
+6. These obstacles can also be added at specific locations using the
+	coordinate button
+7. Every time the submarine collides with an obstacle, the obstacle
+	disappears and gets added to the total score
+8. There is also a tracker for the number off obstacles at the bottom
+9. The game could be paused, which doesn’t allow any movement on 
+	the screen
+10. It can also be zoomed in and out of 
+11. To make the game harder, the speed of the obstacles can be changed 
+	if required
+11. The game can be quit using the exit button
+12. The goal is the get maximum points
+
+
+Aggregation hierarchy:
+
+Main -> left_Panel -> move, Change_color, add_obstacle
+
+Main -> right_Panel -> Obstacle_Type, Chnage_obs_color, Night_mode, X_coor,
+		      Y_coor 
+
+Main -> bottom_Panel -> exit, pause, Increase_speed, zoom_in, zoom_out
+
+Main -> Canvas 
+
+Finally, there are the model, submarine, and obstacle classes used to link 
+everything together.
+
+Inheritance hierarchy: 
+
+Main: JFrame
+JPanel: Canvas, Left_panel, right_panel, bottom_panel
+Move : JScrollBar
+Change_color, add_obstacle, exit, pause, Increase_speed, 
+Change_obs_color, zoom_in, zoom_out: JButton
+Obstacle_type: JComboBox
+X_coor, Y_coor: JTextField
+Night_mode: JCheckBox
+Obstacles (super) - 
+	fish(subclass)
+	shark(subclass)
+
+
+Collaboration relationships:
+
+ Main uses the JFrame class to instantiate and set up the game
+ according to the BorderLayout, assigning separate panels for every 
+ location. It also uses the Canvas class to instantiate the drawing 
+ area.
+
+ The Model uses methods from the different objects classes to draw them.
+ It uses the drawsub method to draw the submarine and then calls it every
+ time its position is updated.
+
+ draw methods from the obstacles class are also used to make the fish and
+ shark obstacles onto the screen. 
+
+ The Model also uses the get/set functions of the obstacles
+ to update their positions. Lastly, the Model uses the get_oval() function
+ of the obstacles and the submarine to check for collisions
+
+
+Information hiding secrets:
+The Model is keeps track of the simulation and allows objects to 
+communicate with each other.
+It keeps track of:
+- number of obstacles
+- submarine and its properties
+- score 
+- obstacles and their properties 
+these are the variables it uses:
+private Canvas canvas;
+private int canvas_x;
+private int canvas_y;
+private Submarine sub;
+private int choice = 1;
+private int score;
+
+The buttons and other widgets do not keep track of variables like the size
+and score. They simply call methods within Model to update them when acted 
+upon. The widgets have an instance of the model object as a private variable
+
+The coords are used to detect collisions. The Model keeps a track of these.
+When there is a possible collision it only needs to retrieve the 
+appropriate coords to check for zooming/collisions.
+
