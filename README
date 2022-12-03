@@ -1,12 +1,15 @@
 README
 
-Name: Krish Savla
-Eamil: krish.savla@tufts.edu
 
-Homework 2/3/4/5/6/7
+HOW TO RUN:
+Use the submarine simulator jar file to run it. 
+NOTE: Make sure you have jdk installed on your computer
+
+OR
 
 compilation: javac Main.java
 run: java Main
+NOTE: Make sure you have jdk installed on your computer
 
 
 Description:
